@@ -14,6 +14,7 @@ using namespace std;
 const int nfile = 33;
 const int lines = 10000;        //read every time per file
 const int round = 16500;
+const int times = 500;
 const string Max = "300000000:";
 
 double wallclock(void)
@@ -139,7 +140,7 @@ int main(int argc, char * argv[])
 			position[Min_Index]++;
 			if(position[Min_Index] >= lines)
 			{
-				if(ReadTimes[Min_Index] < 500)
+				if(ReadTimes[Min_Index] < times)
 					GetDataStrings(num, Min_Index, offset[Min_Index], DataStrings[Min_Index], ReadTimes[Min_Index]);
 				else
 					DataStrings[Min_Index][0] = Max;
