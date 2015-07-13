@@ -11,11 +11,11 @@
 
 using namespace std;
 //const int nfile = 10;
-const int nfile = 33;
+const int nfile = 2;
 const int lines = 10000;        //read every time per file
-const int round = 16500;
-const int times = 500;
-const string Max = "300000000:";
+const int round = 300;
+const int times = 150;
+const string Max = "299999999 ";
 
 double wallclock(void)
 {     struct timeval tv;
@@ -36,10 +36,10 @@ void GetDataStrings(string num, int i, int &offset, string *datastring, int &Rea
 	i_str << i;
 	string inputfilename;
 	if(i <10)
-		inputfilename = "../../Data/p0" + i_str.str() + ".txt";
+		inputfilename = "../../Data/" + i_str.str() + "-150";
 	else
 		inputfilename = "../../Data/p" + i_str.str() + ".txt";
-	cout << inputfilename << endl;
+	cout << inputfilename << ": " << ReadTimes << endl;
 //	cout << inputfilename << endl;
 	// string inputfilename = num + "-" + i_str.str() + ".txt";
 	// cout << inputfilename << endl;
@@ -55,7 +55,7 @@ void GetDataStrings(string num, int i, int &offset, string *datastring, int &Rea
 		datastring[j] = str_temp;
 		// cout << str_temp << endl;
 	}
-//	cout << str_temp << endl;
+	//cout << str_temp << endl;
 	offset = offset_temp + lines;
 	// cout << offset << endl;
 }
@@ -64,10 +64,12 @@ void GetID(string str, int &id)
 {
 	int pos;
 	string id_str;
-	pos = str.find_first_of(":");
+	pos = str.find_first_of(" ");
 	//cout << "pos is " << pos << endl;	
-    id_str = str.substr(0, pos);
-	//cout << "id string is " << id_str << endl;
+    	id_str = str.substr(0, pos);
+	//cout << id_str << endl;
+//	int a;
+//	cin >> a;
 	id = atoi(id_str.c_str());
 	//cout << "integer is " << id << endl;
 }
@@ -95,7 +97,7 @@ int FindMin(string *cmp_array)
 		}
 	}
     
-//	cout << Min_ID << endl;
+	//cout << Min_ID << endl;
 	return Min_Index;
 }
 
@@ -111,7 +113,7 @@ int main(int argc, char * argv[])
 	int offset_temp;
 	stringstream i_str;
 	string inputfilename;
-	string outputfilename = "../../Data/result.txt";
+	string outputfilename = argv[2];
 	string str_temp;
 	string cmp_array[nfile];
 	int Min_Index;
