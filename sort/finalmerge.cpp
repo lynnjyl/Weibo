@@ -13,8 +13,8 @@ using namespace std;
 //const int nfile = 10;
 const int nfile = 2;
 const int lines = 10000;        //read every time per file
-const int round = 300;
-const int times = 150;
+const int round = 1000;
+const int times = 500;
 const string Max = "299999999 ";
 
 double wallclock(void)
@@ -29,14 +29,14 @@ double wallclock(void)
 
      return t;
 }
-void GetDataStrings(string num, int i, int &offset, string *datastring, int &ReadTimes)
+void GetDataStrings(string num, int i, long &offset, string *datastring, int &ReadTimes)
 {
 	ReadTimes++;
 	stringstream i_str;
 	i_str << i;
 	string inputfilename;
 	if(i <10)
-		inputfilename = "../../Data/" + i_str.str() + "-150";
+		inputfilename = "../../Data/p0" + i_str.str() + ".txt";
 	else
 		inputfilename = "../../Data/p" + i_str.str() + ".txt";
 	cout << inputfilename << ": " << ReadTimes << endl;
@@ -45,7 +45,7 @@ void GetDataStrings(string num, int i, int &offset, string *datastring, int &Rea
 	// cout << inputfilename << endl;
 	ifstream ifs(inputfilename.c_str());
 	ifs.seekg(offset, ifs.beg);
-	int offset_temp = offset;
+	long offset_temp = offset;
 	string str_temp;
 	
 	for(int  j = 0; j < lines; j++)
@@ -67,7 +67,8 @@ void GetID(string str, int &id)
 	pos = str.find_first_of(" ");
 	//cout << "pos is " << pos << endl;	
     	id_str = str.substr(0, pos);
-	//cout << id_str << endl;
+//	cout << str << endl;
+//	cout << id_str << endl;
 //	int a;
 //	cin >> a;
 	id = atoi(id_str.c_str());
@@ -107,10 +108,10 @@ int main(int argc, char * argv[])
 	string DataStrings[nfile][lines];	/*data from files*/
 	string ResultStrings[lines];
 	int position[nfile];
-	int offset[nfile];
+	long offset[nfile];
 	int ReadTimes[nfile];
 	
-	int offset_temp;
+//	int offset_temp;
 	stringstream i_str;
 	string inputfilename;
 	string outputfilename = argv[2];
