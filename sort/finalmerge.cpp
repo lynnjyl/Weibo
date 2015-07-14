@@ -11,9 +11,9 @@
 
 using namespace std;
 //const int nfile = 10;
-const int nfile = 2;
+const int nfile = 33;
 const int lines = 10000;        //read every time per file
-const int round = 1000;
+const int round = 16500;
 const int times = 500;
 const string Max = "299999999 ";
 
